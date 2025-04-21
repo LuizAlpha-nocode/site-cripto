@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +11,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .ad-space { background-color: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #64748b; text-align: center; }
+        .ad-space {
+            background-color: #4b5563;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #d1d5db;
+            text-align: center;
+        }
         /* Adicione outros estilos personalizados se necessário */
     </style>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-900 text-gray-200">
 
     <div id="root"></div>
 
@@ -26,8 +34,8 @@
         const App = () => {
             // Simulação de dados de notícias
             const featuredNews = [
-                { id: 1, title: "Bitcoin Atinge Nova Máxima Histórica Acima de $70.000", category: "Bitcoin", date: "2024-03-15", image: "https://via.placeholder.com/600x400.png?text=Bitcoin+High" },
-                { id: 2, title: "Ethereum se prepara para a atualização 'Dencun'", category: "Ethereum", date: "2024-03-14", image: "https://via.placeholder.com/600x400.png?text=Ethereum+Update" },
+                { id: 1, title: "Bitcoin Atinge Nova Máxima Histórica Acima de $70.000", category: "Bitcoin", date: "2024-03-15", image: "https://via.placeholder.com/600x400.png/1f2937/ffffff?text=Bitcoin+High" },
+                { id: 2, title: "Ethereum se prepara para a atualização 'Dencun'", category: "Ethereum", date: "2024-03-14", image: "https://via.placeholder.com/600x400.png/1f2937/ffffff?text=Ethereum+Update" },
             ];
 
             const recentArticles = [
@@ -45,18 +53,26 @@
                 { name: "Cardano", price: "$0.75", change: "-0.5%" },
             ];
 
+            // Cores Neon (Exemplo: verde-limão)
+            const neonAccent = 'text-lime-400';
+            const neonHover = 'hover:text-lime-300';
+            const neonBg = 'bg-lime-500';
+            const neonBgHover = 'hover:bg-lime-400';
+            const neonCategoryBg = 'bg-lime-900';
+            const neonCategoryText = 'text-lime-300';
+
             return (
                 <div className="container mx-auto px-4 py-8">
                     {/* Cabeçalho */}
-                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-300">
-                        <h1 className="text-4xl font-bold text-blue-700 mb-4 md:mb-0">CriptoNews BR</h1>
+                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-700">
+                        <h1 className={`text-4xl font-bold ${neonAccent} mb-4 md:mb-0`}>CriptoNews BR</h1>
                         <nav>
-                            <ul className="flex space-x-4 font-medium">
-                                <li><a href="#" className="hover:text-blue-600">Início</a></li>
-                                <li><a href="#bitcoin" className="hover:text-blue-600">Bitcoin</a></li>
-                                <li><a href="#ethereum" className="hover:text-blue-600">Ethereum</a></li>
-                                <li><a href="#defi" className="hover:text-blue-600">DeFi</a></li>
-                                <li><a href="#nfts" className="hover:text-blue-600">NFTs</a></li>
+                            <ul className="flex space-x-4 font-medium text-gray-300">
+                                <li><a href="#" className={neonHover}>Início</a></li>
+                                <li><a href="#bitcoin" className={neonHover}>Bitcoin</a></li>
+                                <li><a href="#ethereum" className={neonHover}>Ethereum</a></li>
+                                <li><a href="#defi" className={neonHover}>DeFi</a></li>
+                                <li><a href="#nfts" className={neonHover}>NFTs</a></li>
                             </ul>
                         </nav>
                     </header>
@@ -66,15 +82,15 @@
 
                     {/* Seção de Destaques */}
                     <section className="mb-12">
-                        <h2 className="text-3xl font-semibold mb-6">Em Destaque</h2>
+                        <h2 className="text-3xl font-semibold mb-6 text-gray-100">Em Destaque</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {featuredNews.map(news => (
-                                <article key={news.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                <article key={news.id} className="bg-gray-800 rounded-lg shadow-md overflow-hidden">
                                     <img src={news.image} alt={news.title} className="w-full h-48 object-cover"/>
                                     <div className="p-6">
-                                        <span className="text-sm font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded mb-2 inline-block">{news.category}</span>
-                                        <h3 className="text-xl font-semibold mb-2 hover:text-blue-700 cursor-pointer">{news.title}</h3>
-                                        <p className="text-gray-500 text-sm">{news.date}</p>
+                                        <span className={`text-sm font-medium ${neonCategoryText} ${neonCategoryBg} px-2 py-1 rounded mb-2 inline-block`}>{news.category}</span>
+                                        <h3 className={`text-xl font-semibold mb-2 ${neonHover} cursor-pointer text-gray-100`}>{news.title}</h3>
+                                        <p className="text-gray-400 text-sm">{news.date}</p>
                                     </div>
                                 </article>
                             ))}
@@ -84,23 +100,22 @@
                     <div className="flex flex-col lg:flex-row gap-8">
                         {/* Coluna Principal - Notícias Recentes */}
                         <main className="flex-grow">
-                            <h2 className="text-3xl font-semibold mb-6">Artigos Recentes</h2>
+                            <h2 className="text-3xl font-semibold mb-6 text-gray-100">Artigos Recentes</h2>
                             <div className="space-y-6">
                                 {recentArticles.map(article => (
-                                    <article key={article.id} className="bg-white p-6 rounded-lg shadow-md flex items-start space-x-4">
-                                        <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-gray-500">
-                                            {/* Ícone genérico ou imagem pequena */}
+                                    <article key={article.id} className="bg-gray-800 p-6 rounded-lg shadow-md flex items-start space-x-4">
+                                        <div className="flex-shrink-0 w-16 h-16 bg-gray-700 rounded flex items-center justify-center text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 12h6m-6-4h6" /></svg>
                                         </div>
                                         <div>
-                                             <span className="text-sm font-medium text-purple-600 bg-purple-100 px-2 py-1 rounded mb-1 inline-block">{article.category}</span>
-                                            <h3 className="text-lg font-semibold mb-1 hover:text-blue-700 cursor-pointer">{article.title}</h3>
-                                            <p className="text-gray-500 text-sm">{article.date}</p>
+                                             <span className={`text-sm font-medium ${neonCategoryText} ${neonCategoryBg} px-2 py-1 rounded mb-1 inline-block`}>{article.category}</span>
+                                            <h3 className={`text-lg font-semibold mb-1 ${neonHover} cursor-pointer text-gray-100`}>{article.title}</h3>
+                                            <p className="text-gray-400 text-sm">{article.date}</p>
                                         </div>
                                     </article>
                                 ))}
                             </div>
-                            <button className="mt-8 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-200">
+                            <button className={`mt-8 w-full ${neonBg} text-gray-900 py-2 px-4 rounded ${neonBgHover} transition duration-200 font-semibold`}>
                                 Carregar Mais Notícias
                             </button>
                         </main>
@@ -108,33 +123,33 @@
                         {/* Barra Lateral */}
                         <aside className="w-full lg:w-1/3 flex-shrink-0">
                             {/* Preços */}
-                            <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-                                <h3 className="text-xl font-semibold mb-4">Preços Cripto (Ao Vivo)</h3>
+                            <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-8">
+                                <h3 className="text-xl font-semibold mb-4 text-gray-100">Preços Cripto (Ao Vivo)</h3>
                                 <ul className="space-y-3">
                                     {cryptoPrices.map(crypto => (
                                         <li key={crypto.name} className="flex justify-between items-center">
-                                            <span className="font-medium">{crypto.name}</span>
+                                            <span className="font-medium text-gray-200">{crypto.name}</span>
                                             <div className="text-right">
-                                                <span>{crypto.price}</span>
-                                                <span className={`ml-2 text-sm ${crypto.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
+                                                <span className="text-gray-300">{crypto.price}</span>
+                                                <span className={`ml-2 text-sm ${crypto.change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
                                                     {crypto.change}
                                                 </span>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
-                                <a href="#" className="text-blue-600 hover:underline text-sm mt-4 block text-center">Ver todos os preços</a>
+                                <a href="#" className={`text-sm mt-4 block text-center ${neonAccent} ${neonHover}`}>Ver todos os preços</a>
                             </div>
 
                             {/* Ad Space Lateral */}
                             <div className="ad-space h-64 mb-8 rounded sticky top-8">Espaço para Anúncio (300x250)</div>
 
                              {/* Newsletter (Exemplo) */}
-                            <div className="bg-white p-6 rounded-lg shadow-md">
-                                <h3 className="text-xl font-semibold mb-4">Newsletter Semanal</h3>
-                                <p className="text-gray-600 mb-4 text-sm">Receba as principais notícias direto no seu email.</p>
-                                <input type="email" placeholder="Seu melhor email" className="w-full border border-gray-300 p-2 rounded mb-3 text-sm"/>
-                                <button className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition duration-200 text-sm">
+                            <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+                                <h3 className="text-xl font-semibold mb-4 text-gray-100">Newsletter Semanal</h3>
+                                <p className="text-gray-400 mb-4 text-sm">Receba as principais notícias direto no seu email.</p>
+                                <input type="email" placeholder="Seu melhor email" className="w-full border border-gray-600 bg-gray-700 text-gray-200 p-2 rounded mb-3 text-sm placeholder-gray-500 focus:ring-lime-500 focus:border-lime-500"/>
+                                <button className={`w-full ${neonBg} text-gray-900 py-2 px-4 rounded ${neonBgHover} transition duration-200 text-sm font-semibold`}>
                                     Inscrever-se
                                 </button>
                             </div>
@@ -142,41 +157,41 @@
                     </div>
 
                     {/* Footer */}
-                    <footer className="mt-16 pt-8 border-t border-gray-300 text-center text-gray-500 text-sm">
+                    <footer className="mt-16 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
                             <div>
-                                <h4 className="font-semibold text-gray-700 mb-2">Categorias</h4>
-                                <ul>
-                                    <li><a href="#" className="hover:text-blue-600">Bitcoin</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Ethereum</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">DeFi</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">NFTs</a></li>
-                                     <li><a href="#" className="hover:text-blue-600">Regulação</a></li>
+                                <h4 className="font-semibold text-gray-300 mb-2">Categorias</h4>
+                                <ul className="space-y-1">
+                                    <li><a href="#" className={neonHover}>Bitcoin</a></li>
+                                    <li><a href="#" className={neonHover}>Ethereum</a></li>
+                                    <li><a href="#" className={neonHover}>DeFi</a></li>
+                                    <li><a href="#" className={neonHover}>NFTs</a></li>
+                                     <li><a href="#" className={neonHover}>Regulação</a></li>
                                 </ul>
                             </div>
                              <div>
-                                <h4 className="font-semibold text-gray-700 mb-2">Recursos</h4>
-                                <ul>
-                                    <li><a href="#" className="hover:text-blue-600">Glossário Cripto</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Guias para Iniciantes</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Ferramentas</a></li>
+                                <h4 className="font-semibold text-gray-300 mb-2">Recursos</h4>
+                                <ul className="space-y-1">
+                                    <li><a href="#" className={neonHover}>Glossário Cripto</a></li>
+                                    <li><a href="#" className={neonHover}>Guias para Iniciantes</a></li>
+                                    <li><a href="#" className={neonHover}>Ferramentas</a></li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-gray-700 mb-2">Sobre Nós</h4>
-                                <ul>
-                                    <li><a href="#" className="hover:text-blue-600">Quem Somos</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Contato</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Política de Privacidade</a></li>
-                                    <li><a href="#" className="hover:text-blue-600">Termos de Uso</a></li>
+                                <h4 className="font-semibold text-gray-300 mb-2">Sobre Nós</h4>
+                                <ul className="space-y-1">
+                                    <li><a href="#" className={neonHover}>Quem Somos</a></li>
+                                    <li><a href="#" className={neonHover}>Contato</a></li>
+                                    <li><a href="#" className={neonHover}>Política de Privacidade</a></li>
+                                    <li><a href="#" className={neonHover}>Termos de Uso</a></li>
                                 </ul>
                             </div>
                              <div>
-                                <h4 className="font-semibold text-gray-700 mb-2">Siga-nos</h4>
+                                <h4 className="font-semibold text-gray-300 mb-2">Siga-nos</h4>
                                 {/* Adicionar ícones de redes sociais aqui */}
-                                <a href="#" className="hover:text-blue-600 mr-2">Twitter</a>
-                                <a href="#" className="hover:text-blue-600 mr-2">Facebook</a>
-                                <a href="#" className="hover:text-blue-600">LinkedIn</a>
+                                <a href="#" className={`${neonHover} mr-2`}>Twitter</a>
+                                <a href="#" className={`${neonHover} mr-2`}>Facebook</a>
+                                <a href="#" className={`${neonHover}`}>LinkedIn</a>
                             </div>
                         </div>
                         <p>&copy; {new Date().getFullYear()} CriptoNews BR. Todos os direitos reservados.</p>
