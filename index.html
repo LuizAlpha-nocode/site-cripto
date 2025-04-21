@@ -12,30 +12,41 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
         .ad-space {
-            background-color: #4b5563;
+            /* Ajuste para fundo mais escuro e menos opaco */
+            background-color: rgba(31, 41, 55, 0.5); /* bg-gray-800 com 50% opacidade */
+            backdrop-filter: blur(4px); /* Efeito de vidro fosco (suporte limitado) */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.375rem; /* rounded-md */
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8rem;
-            color: #d1d5db;
+            color: #d1d5db; /* text-gray-300 */
             text-align: center;
         }
-        /* Estilo para ring suave no hover */
-        .neon-hover-effect {
-            transition: box-shadow 0.2s ease-in-out;
+        .glass-card {
+            background-color: rgba(31, 41, 55, 0.6); /* bg-gray-800 com 60% opacidade */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.375rem; /* rounded-md */
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
-        .neon-hover-effect:hover {
-            /* Simulando brilho com ring */
-            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+        .glass-card:hover {
+             border-color: rgba(192, 132, 252, 0.5); /* Cor roxa como exemplo para hover */
+             /* Sombra sutil roxa */
+             box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+        }
+        /* Estilo personalizado para fundo com gradiente e estrelas (simulado) */
+        body {
+             background: linear-gradient(to bottom right, #111827, #000000);
+             /* Adicionar estrelas aqui seria complexo sem JS/Canvas, mantendo gradiente escuro por enquanto */
         }
     </style>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="bg-gray-900 text-gray-200">
+<body class="text-gray-200">
 
     <div id="root"></div>
 
@@ -60,44 +71,45 @@
             ];
             // ==================================
 
-            // Cores Neon (Exemplo: verde-limão)
-            const neonAccent = 'text-lime-400';
-            const neonHover = 'hover:text-lime-300';
-            const neonBg = 'bg-lime-500';
-            const neonBgHover = 'hover:bg-lime-400';
-            const neonCategoryBg = 'bg-lime-900';
-            const neonCategoryText = 'text-lime-300';
-            const neonRingColor = 'ring-lime-500'; // Cor para o efeito de ring
+            // === NOVAS CORES E ESTILOS ===
+            const accentColor = 'text-fuchsia-500'; // Cor de acento principal (texto)
+            const accentHover = 'hover:text-fuchsia-400';
+            const buttonGradient = 'bg-gradient-to-r from-purple-600 to-pink-600';
+            const buttonHover = 'hover:from-purple-700 hover:to-pink-700'; // Escurecer gradiente no hover
+            const categoryBg = 'bg-fuchsia-900/50'; // Fundo semi-transparente para categoria
+            const categoryText = 'text-fuchsia-300';
+            // ===============================
 
             return (
                 <div className="container mx-auto px-4 py-8">
-                    {/* Cabeçalho */}
-                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-700">
-                        <h1 className={`text-4xl font-bold ${neonAccent} mb-4 md:mb-0`}>CriptoNews BR</h1>
+                    {/* Cabeçalho - Título com acento, links com hover */}
+                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-700/50">
+                        <h1 className={`text-4xl font-bold ${accentColor} mb-4 md:mb-0 tracking-wider`}>CriptoNews BR</h1>
                         <nav>
-                            <ul className="flex space-x-4 font-medium text-gray-300">
-                                <li><a href="#" className={neonHover}>Início</a></li>
-                                <li><a href="#bitcoin" className={neonHover}>Bitcoin</a></li>
-                                <li><a href="#ethereum" className={neonHover}>Ethereum</a></li>
-                                <li><a href="#defi" className={neonHover}>DeFi</a></li>
-                                <li><a href="#nfts" className={neonHover}>NFTs</a></li>
+                            <ul className="flex space-x-6 font-medium text-gray-300"> {/* Aumenta espaçamento */}
+                                <li><a href="#" className={accentHover}>Início</a></li>
+                                <li><a href="#bitcoin" className={accentHover}>Bitcoin</a></li>
+                                <li><a href="#ethereum" className={accentHover}>Ethereum</a></li>
+                                <li><a href="#defi" className={accentHover}>DeFi</a></li>
+                                <li><a href="#nfts" className={accentHover}>NFTs</a></li>
                             </ul>
                         </nav>
                     </header>
 
                     {/* Ad Space Superior */}
-                    <div className="ad-space h-24 mb-8 rounded">Espaço para Anúncio (728x90)</div>
+                    <div className="ad-space h-24 mb-8">Espaço para Anúncio (728x90)</div>
 
                     {/* Seção de Destaques */}
                     <section className="mb-12">
                         <h2 className="text-3xl font-semibold mb-6 text-gray-100">Em Destaque</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> {/* Gap ligeiramente menor */}
                             {featuredNews.map(news => (
-                                <article key={news.id} className={`bg-gray-800 rounded-lg shadow-md overflow-hidden neon-hover-effect ${neonRingColor} ring-offset-gray-900 ring-offset-2 hover:ring-2`}>
-                                    <img src={news.image} alt={news.title} className="w-full h-48 object-cover"/>
-                                    <div className="p-6">
-                                        <span className={`text-sm font-medium ${neonCategoryText} ${neonCategoryBg} px-2 py-1 rounded mb-2 inline-block`}>{news.category}</span>
-                                        <h3 className={`text-xl font-semibold mb-2 ${neonHover} cursor-pointer text-gray-100`}>{news.title}</h3>
+                                // Aplica estilo glass-card
+                                <article key={news.id} className="glass-card overflow-hidden group">
+                                    <img src={news.image} alt={news.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"/> {/* Zoom suave na imagem */}
+                                    <div className="p-5">
+                                        <span className={`text-xs font-medium ${categoryText} ${categoryBg} px-2 py-1 rounded mb-2 inline-block`}>{news.category}</span>
+                                        <h3 className={`text-xl font-semibold mb-2 text-gray-100 ${accentHover} cursor-pointer`}>{news.title}</h3>
                                         <p className="text-gray-400 text-sm">{news.date}</p>
                                     </div>
                                 </article>
@@ -109,48 +121,55 @@
                         {/* Coluna Principal - Notícias Recentes */}
                         <main className="flex-grow">
                             <h2 className="text-3xl font-semibold mb-6 text-gray-100">Artigos Recentes</h2>
-                            <div className="space-y-6">
+                            <div className="space-y-5">
                                 {recentArticles.map(article => (
-                                    <article key={article.id} className={`bg-gray-800 p-6 rounded-lg shadow-md flex items-start space-x-4 neon-hover-effect ${neonRingColor} ring-offset-gray-900 ring-offset-2 hover:ring-2`}>
-                                        <img src={article.image} alt={article.title} className="flex-shrink-0 w-24 h-24 rounded object-cover"/>
+                                    // Aplica estilo glass-card
+                                    <article key={article.id} className="glass-card p-5 flex items-center space-x-4 group">
+                                        <img src={article.image} alt={article.title} className="flex-shrink-0 w-24 h-24 rounded object-cover group-hover:scale-105 transition-transform duration-300"/>
                                         <div>
-                                             <span className={`text-sm font-medium ${neonCategoryText} ${neonCategoryBg} px-2 py-1 rounded mb-1 inline-block`}>{article.category}</span>
-                                            <h3 className={`text-lg font-semibold mb-1 ${neonHover} cursor-pointer text-gray-100`}>{article.title}</h3>
+                                             <span className={`text-xs font-medium ${categoryText} ${categoryBg} px-2 py-1 rounded mb-1 inline-block`}>{article.category}</span>
+                                            <h3 className={`text-lg font-semibold mb-1 text-gray-100 ${accentHover} cursor-pointer`}>{article.title}</h3>
                                             <p className="text-gray-400 text-sm">{article.date}</p>
                                         </div>
                                     </article>
                                 ))}
                             </div>
-                            <button className={`mt-8 w-full ${neonBg} text-gray-900 py-2 px-4 rounded ${neonBgHover} transition duration-200 font-semibold`}>
+                            {/* Botão com gradiente */}
+                            <button className={`mt-8 w-full ${buttonGradient} text-white py-2.5 px-4 rounded ${buttonHover} transition duration-200 font-semibold shadow-lg hover:shadow-fuchsia-500/30`}>
                                 Carregar Mais Notícias
                             </button>
                         </main>
 
                         {/* Barra Lateral */}
-                        <aside className="w-full lg:w-1/3 flex-shrink-0">
-                            <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-8">
-                                <h3 className="text-xl font-semibold mb-4 text-gray-100">Preços Cripto (Ao Vivo)</h3>
+                        <aside className="w-full lg:w-1/3 flex-shrink-0 space-y-8">
+                            {/* Preços - Card com estilo glass */}
+                            <div className="glass-card p-6">
+                                <h3 className="text-xl font-semibold mb-4 text-gray-100">Preços Cripto</h3>
                                 <ul className="space-y-3">
                                     {cryptoPrices.map(crypto => (
-                                        <li key={crypto.name} className="flex justify-between items-center">
+                                        <li key={crypto.name} className="flex justify-between items-center border-b border-gray-700/50 pb-2 last:border-b-0 last:pb-0">
                                             <span className="font-medium text-gray-200">{crypto.name}</span>
                                             <div className="text-right">
                                                 <span className="text-gray-300">{crypto.price}</span>
-                                                <span className={`ml-2 text-sm ${crypto.change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}>
+                                                <span className={`ml-2 text-sm ${crypto.change.startsWith('+') ? 'text-green-400' : 'text-red-400'}`}> 
                                                     {crypto.change}
                                                 </span>
                                             </div>
                                         </li>
                                     ))}
                                 </ul>
-                                <a href="#" className={`text-sm mt-4 block text-center ${neonAccent} ${neonHover}`}>Ver todos os preços</a>
+                                <a href="#" className={`text-sm mt-4 block text-center ${accentColor} ${accentHover}`}>Ver todos os preços</a>
                             </div>
-                            <div className="ad-space h-64 mb-8 rounded sticky top-8">Espaço para Anúncio (300x250)</div>
-                            <div className="bg-gray-800 p-6 rounded-lg shadow-md">
+
+                            {/* Ad Space Lateral */}
+                            <div className="ad-space h-64 sticky top-8">Espaço para Anúncio (300x250)</div>
+
+                             {/* Newsletter - Card com estilo glass e botão gradiente */}
+                            <div className="glass-card p-6">
                                 <h3 className="text-xl font-semibold mb-4 text-gray-100">Newsletter Semanal</h3>
                                 <p className="text-gray-400 mb-4 text-sm">Receba as principais notícias direto no seu email.</p>
-                                <input type="email" placeholder="Seu melhor email" className="w-full border border-gray-600 bg-gray-700 text-gray-200 p-2 rounded mb-3 text-sm placeholder-gray-500 focus:ring-lime-500 focus:border-lime-500"/>
-                                <button className={`w-full ${neonBg} text-gray-900 py-2 px-4 rounded ${neonBgHover} transition duration-200 text-sm font-semibold`}>
+                                <input type="email" placeholder="Seu melhor email" className="w-full border border-gray-700/50 bg-gray-800/50 text-gray-200 p-2 rounded mb-3 text-sm placeholder-gray-500 focus:ring-fuchsia-500 focus:border-fuchsia-500"/>
+                                <button className={`w-full ${buttonGradient} text-white py-2 px-4 rounded ${buttonHover} transition duration-200 text-sm font-semibold shadow-lg hover:shadow-fuchsia-500/30`}>
                                     Inscrever-se
                                 </button>
                             </div>
@@ -158,40 +177,44 @@
                     </div>
 
                     {/* Footer */}
-                    <footer className="mt-16 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+                    <footer className="mt-16 pt-8 border-t border-gray-700/50 text-center text-gray-500 text-sm">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-left">
+                            {/* Links do Footer com hover */}
                             <div>
-                                <h4 className="font-semibold text-gray-300 mb-2">Categorias</h4>
+                                <h4 className="font-semibold text-gray-300 mb-2 uppercase text-xs tracking-wider">Categorias</h4>
                                 <ul className="space-y-1">
-                                    <li><a href="#" className={neonHover}>Bitcoin</a></li>
-                                    <li><a href="#" className={neonHover}>Ethereum</a></li>
-                                    <li><a href="#" className={neonHover}>DeFi</a></li>
-                                    <li><a href="#" className={neonHover}>NFTs</a></li>
-                                     <li><a href="#" className={neonHover}>Regulação</a></li>
+                                    <li><a href="#" className={accentHover}>Bitcoin</a></li>
+                                    <li><a href="#" className={accentHover}>Ethereum</a></li>
+                                    <li><a href="#" className={accentHover}>DeFi</a></li>
+                                    <li><a href="#" className={accentHover}>NFTs</a></li>
+                                     <li><a href="#" className={accentHover}>Regulação</a></li>
                                 </ul>
                             </div>
                              <div>
-                                <h4 className="font-semibold text-gray-300 mb-2">Recursos</h4>
+                                <h4 className="font-semibold text-gray-300 mb-2 uppercase text-xs tracking-wider">Recursos</h4>
                                 <ul className="space-y-1">
-                                    <li><a href="#" className={neonHover}>Glossário Cripto</a></li>
-                                    <li><a href="#" className={neonHover}>Guias para Iniciantes</a></li>
-                                    <li><a href="#" className={neonHover}>Ferramentas</a></li>
+                                    <li><a href="#" className={accentHover}>Glossário Cripto</a></li>
+                                    <li><a href="#" className={accentHover}>Guias para Iniciantes</a></li>
+                                    <li><a href="#" className={accentHover}>Ferramentas</a></li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-gray-300 mb-2">Sobre Nós</h4>
+                                <h4 className="font-semibold text-gray-300 mb-2 uppercase text-xs tracking-wider">Sobre Nós</h4>
                                 <ul className="space-y-1">
-                                    <li><a href="#" className={neonHover}>Quem Somos</a></li>
-                                    <li><a href="#" className={neonHover}>Contato</a></li>
-                                    <li><a href="#" className={neonHover}>Política de Privacidade</a></li>
-                                    <li><a href="#" className={neonHover}>Termos de Uso</a></li>
+                                    <li><a href="#" className={accentHover}>Quem Somos</a></li>
+                                    <li><a href="#" className={accentHover}>Contato</a></li>
+                                    <li><a href="#" className={accentHover}>Política de Privacidade</a></li>
+                                    <li><a href="#" className={accentHover}>Termos de Uso</a></li>
                                 </ul>
                             </div>
                              <div>
-                                <h4 className="font-semibold text-gray-300 mb-2">Siga-nos</h4>
-                                <a href="#" className={`${neonHover} mr-2`}>Twitter</a>
-                                <a href="#" className={`${neonHover} mr-2`}>Facebook</a>
-                                <a href="#" className={`${neonHover}`}>LinkedIn</a>
+                                <h4 className="font-semibold text-gray-300 mb-2 uppercase text-xs tracking-wider">Siga-nos</h4>
+                                <div className="flex space-x-3">
+                                    {/* Ícones placeholder - idealmente substituir por SVGs reais */}
+                                    <a href="#" className={`${accentHover}`}>Tw</a>
+                                    <a href="#" className={`${accentHover}`}>Fb</a>
+                                    <a href="#" className={`${accentHover}`}>Ln</a>
+                                </div>
                             </div>
                         </div>
                         <p>&copy; {new Date().getFullYear()} CriptoNews BR. Todos os direitos reservados.</p>
