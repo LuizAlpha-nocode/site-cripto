@@ -52,15 +52,15 @@
 
     <script type="text/babel">
         const App = () => {
-            // === DADOS COM NOVAS IMAGENS (Pexels) ===
+            // === DADOS COM IMAGENS CORRIGIDAS ===
             const featuredNews = [
                 { id: 1, title: "Bitcoin Atinge Nova Máxima Histórica Acima de $70.000", category: "Bitcoin", date: "2024-03-15", image: "https://images.pexels.com/photos/844124/pexels-photo-844124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-                { id: 2, title: "Ethereum se prepara para a atualização 'Dencun'", category: "Ethereum", date: "2024-03-14", image: "https://images.pexels.com/photos/18051330/pexels-photo-18051330/free-photo-of-tokens-ethereum.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+                { id: 2, title: "Ethereum se prepara para a atualização 'Dencun'", category: "Ethereum", date: "2024-03-14", image: "https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
             ];
             const recentArticles = [
                 { id: 3, title: "A Ascensão do DeFi 2.0: O Que Esperar?", category: "DeFi", date: "2024-03-13" , image: "https://images.pexels.com/photos/7788009/pexels-photo-7788009.jpeg?auto=compress&cs=tinysrgb&w=600" },
                 { id: 4, title: "NFTs de Arte Generativa Ganham Popularidade", category: "NFTs", date: "2024-03-12", image: "https://images.pexels.com/photos/1194420/pexels-photo-1194420.jpeg?auto=compress&cs=tinysrgb&w=600" },
-                { id: 5, title: "Regulamentação de Cripto na União Europeia Avança", category: "Regulação", date: "2024-03-11", image: "https://images.pexels.com/photos/5980/food-purple-food-photography-grape.jpg?auto=compress&cs=tinysrgb&w=600" }, // Placeholder temático
+                { id: 5, title: "Regulamentação de Cripto na União Europeia Avança", category: "Regulação", date: "2024-03-11", image: "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=600" },
                 { id: 6, title: "Análise Semanal do Mercado de Altcoins", category: "Análise", date: "2024-03-10", image: "https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=600" },
             ];
             const cryptoPrices = [
@@ -71,12 +71,12 @@
             ];
             // ==================================
 
-            // === NOVAS CORES E ESTILOS ===
-            const accentColor = 'text-fuchsia-500'; // Cor de acento principal (texto)
+            // === CORES E ESTILOS ===
+            const accentColor = 'text-fuchsia-500';
             const accentHover = 'hover:text-fuchsia-400';
             const buttonGradient = 'bg-gradient-to-r from-purple-600 to-pink-600';
-            const buttonHover = 'hover:from-purple-700 hover:to-pink-700'; // Escurecer gradiente no hover
-            const categoryBg = 'bg-fuchsia-900/50'; // Fundo semi-transparente para categoria
+            const buttonHover = 'hover:from-purple-700 hover:to-pink-700';
+            const categoryBg = 'bg-fuchsia-900/50';
             const categoryText = 'text-fuchsia-300';
             // ===============================
 
@@ -86,7 +86,7 @@
                     <header className="flex flex-col md:flex-row justify-between items-center mb-8 pb-4 border-b border-gray-700/50">
                         <h1 className={`text-4xl font-bold ${accentColor} mb-4 md:mb-0 tracking-wider`}>CriptoNews BR</h1>
                         <nav>
-                            <ul className="flex space-x-6 font-medium text-gray-300"> {/* Aumenta espaçamento */}
+                            <ul className="flex space-x-6 font-medium text-gray-300">
                                 <li><a href="#" className={accentHover}>Início</a></li>
                                 <li><a href="#bitcoin" className={accentHover}>Bitcoin</a></li>
                                 <li><a href="#ethereum" className={accentHover}>Ethereum</a></li>
@@ -102,11 +102,10 @@
                     {/* Seção de Destaques */}
                     <section className="mb-12">
                         <h2 className="text-3xl font-semibold mb-6 text-gray-100">Em Destaque</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"> {/* Gap ligeiramente menor */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {featuredNews.map(news => (
-                                // Aplica estilo glass-card
                                 <article key={news.id} className="glass-card overflow-hidden group">
-                                    <img src={news.image} alt={news.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"/> {/* Zoom suave na imagem */}
+                                    <img src={news.image} alt={news.title} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"/>
                                     <div className="p-5">
                                         <span className={`text-xs font-medium ${categoryText} ${categoryBg} px-2 py-1 rounded mb-2 inline-block`}>{news.category}</span>
                                         <h3 className={`text-xl font-semibold mb-2 text-gray-100 ${accentHover} cursor-pointer`}>{news.title}</h3>
@@ -123,7 +122,6 @@
                             <h2 className="text-3xl font-semibold mb-6 text-gray-100">Artigos Recentes</h2>
                             <div className="space-y-5">
                                 {recentArticles.map(article => (
-                                    // Aplica estilo glass-card
                                     <article key={article.id} className="glass-card p-5 flex items-center space-x-4 group">
                                         <img src={article.image} alt={article.title} className="flex-shrink-0 w-24 h-24 rounded object-cover group-hover:scale-105 transition-transform duration-300"/>
                                         <div>
